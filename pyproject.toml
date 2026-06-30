@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "myglico-semantic"
+version = "0.1.0"
+description = "Semantic Web coursework deliverable for MyGlico: UCI Diabetes import, MySQL persistence, ontology, R2RML mapping, and GraphDB validation."
+requires-python = ">=3.12"
+dependencies = [
+    "alembic>=1.16.0",
+    "cryptography>=42.0.0",
+    "pydantic-settings>=2.10.0",
+    "pymysql>=1.1.1",
+    "requests>=2.32.4",
+    "sqlalchemy>=2.0.41",
+    "unlzw3>=0.2.3",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*"]
