@@ -1,36 +1,36 @@
-﻿# MyGlico Semantic
+# MyGlico Semantic
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21148858.svg)](https://doi.org/10.5281/zenodo.21148858)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
-**Português** | [English](README.en.md)
+[Português](README.pt-br.md) | **English**
 
-Repositório de conclusão da disciplina de **Web Semântica**, com o recorte semântico do projeto MyGlico.
+Coursework capstone for the **Semantic Web** discipline, covering the semantic slice of the MyGlico project.
 
-O objetivo deste repositório é demonstrar:
+This repository demonstrates:
 
-- importação do dataset bruto para MySQL;
-- persistência relacional dos pacientes, registros brutos e medições normalizadas;
-- ontologia MYGV;
-- mapping R2RML/Juma para materialização RDF;
-- validação end-to-end em MySQL e GraphDB;
-- artefatos acadêmicos de apresentação e relatório.
+- import of the raw dataset into MySQL;
+- relational persistence of patients, raw records, and normalized measurements;
+- the MYGV ontology;
+- an R2RML/Juma mapping for RDF materialization;
+- end-to-end validation across MySQL and GraphDB;
+- academic presentation and report artifacts.
 
-## Estrutura
+## Structure
 
 ```text
 .
-|-- alembic/                     # Migrations para instanciar o schema MySQL
+|-- alembic/                     # Migrations that instantiate the MySQL schema
 |-- app/
-|   |-- core/                    # Configuração mínima
-|   |-- db/                      # Engine e sessão SQLAlchemy
-|   |-- models/                  # Entidades relacionais usadas pelo import
-|   `-- services/uci_importer.py # Importador UCI Diabetes
+|   |-- core/                    # Minimal configuration
+|   |-- db/                      # SQLAlchemy engine and session
+|   |-- models/                  # Relational entities used by the import
+|   `-- services/uci_importer.py # UCI Diabetes importer
 |-- artifacts/
-|   |-- presentations/           # Apresentações e notebook final em formato Colab
-|   `-- reports/                 # PDF do relatório final quando produzido
+|   |-- presentations/           # Presentations and the final Colab notebook
+|   `-- reports/                 # Final report PDF when produced
 |-- data/
-|   `-- raw/                     # Artefatos brutos incluídos para facilitar a avaliação
+|   `-- raw/                     # Raw artifacts included to ease evaluation
 |-- mappings/
 |   `-- myglico-core-r2rml-juma.ttl
 |-- ontology/
@@ -40,53 +40,53 @@ O objetivo deste repositório é demonstrar:
     `-- import_uci_dataset.py
 ```
 
-## Requisitos
+## Requirements
 
 - Docker Desktop
 - Python 3.12+
 - MySQL via Docker Compose
-- GraphDB para carregar o RDF materializado
-- Distribuição Juma/R2RML, caso o RDF seja regenerado fora deste repositório
+- GraphDB to load the materialized RDF
+- A Juma/R2RML distribution, if the RDF is regenerated outside this repository
 
-## Como instanciar o MySQL e importar o dataset
+## Instantiating MySQL and importing the dataset
 
-Subir apenas o MySQL:
+Start MySQL only:
 
 ```powershell
 docker compose up -d db
 ```
 
-Instalar dependências Python:
+Install Python dependencies:
 
 ```powershell
 pip install .
 ```
 
-Aplicar migrations e importar o dataset UCI Diabetes:
+Apply migrations and import the UCI Diabetes dataset:
 
 ```powershell
 python scripts/import_uci_dataset.py --skip-docker
 ```
 
-Ou executar tudo pelo serviço `importer`:
+Or run everything through the `importer` service:
 
 ```powershell
 docker compose up importer
 ```
 
-O import é idempotente por padrão: se registros de dataset já existirem em `glucose_record_sources`, ele reutiliza o último batch e evita uma nova carga completa.
+The import is idempotent by default: if dataset records already exist in `glucose_record_sources`, it reuses the last batch and avoids a full reload.
 
-Para forçar nova importação:
+To force a new import:
 
 ```powershell
 python scripts/import_uci_dataset.py --skip-docker --force-import
 ```
 
-Use `--force-import` com cuidado, pois ele pode duplicar registros caso o banco não tenha sido limpo antes.
+Use `--force-import` carefully, as it may duplicate records if the database was not cleared first.
 
-## Pasta `data/raw`
+## The `data/raw` folder
 
-Para facilitar a avaliação do projeto, o repositório inclui alguns artefatos já gerados em `data/raw/`:
+To ease evaluation, the repository ships a few prebuilt artifacts in `data/raw/`:
 
 ```text
 data/raw/
@@ -95,84 +95,84 @@ data/raw/
 `-- uci_diabetes.zip
 ```
 
-- `myglico-rdf.ttl`: base RDF extraída pelo R2RML a partir do mapping construído no Juma e exportado usando o jar da versão de 2024 do projeto [`chrdebru/r2rml-distributions`](https://github.com/chrdebru/r2rml-distributions).
-- `dump-database.sql`: dump da base populada pelo script Python de importação do UCI Diabetes, após a aplicação das migrations.
-- `uci_diabetes.zip`: dataset bruto baixado e usado como origem da carga.
+- `myglico-rdf.ttl`: RDF base extracted by R2RML from the mapping authored in Juma and exported with the 2024 jar of [`chrdebru/r2rml-distributions`](https://github.com/chrdebru/r2rml-distributions).
+- `dump-database.sql`: dump of the database populated by the Python UCI Diabetes import script, after migrations were applied.
+- `uci_diabetes.zip`: the raw dataset downloaded and used as the load source.
 
-Esses arquivos foram adicionados para simplificar a inspeção e a avaliação do trabalho. Ainda assim, executando o projeto com o pipeline descrito neste README, é possível reproduzir os mesmos artefatos e chegar aos mesmos resultados.
+These files were added to simplify inspection and grading. Even so, running the project through the pipeline described in this README reproduces the same artifacts and the same results.
 
-## Ontologia
+## Ontology
 
-A ontologia fica em:
+The ontology lives in:
 
 ```text
 ontology/mygv-dpo-extension.owl.ttl
 ```
 
-Ela modela o vocabulário MYGV usado para representar pacientes, medições glicêmicas, registros brutos e fontes de dados.
+It models the MYGV vocabulary used to represent patients, glucose measurements, raw records, and data sources.
 
-## Mapping R2RML
+## R2RML mapping
 
-O mapping principal fica em:
+The main mapping lives in:
 
 ```text
 mappings/myglico-core-r2rml-juma.ttl
 ```
 
-Como anexo ao projeto, a evolução da plataforma Juma usada no trabalho está disponibilizada em [`cale-minds/juma.git`](https://github.com/cale-minds/juma.git).
+As a project annex, the evolution of the Juma platform used in this work is available at [`cale-minds/juma.git`](https://github.com/cale-minds/juma.git).
 
-Ele materializa a ponte:
+It materializes the bridge:
 
 ```text
 Patient -> GlucoseMeasurement -> RawRecord -> DataSource
 ```
 
-## Artefatos de apresentação
+## Presentation artifacts
 
-Os artefatos de apresentação ficam em:
+The presentation artifacts live in:
 
 ```text
 artifacts/presentations/
 ```
 
-Arquivos atuais:
+Current files:
 
-| Ordem | Arquivo | Papel |
+| Order | File | Role |
 | ---: | --- | --- |
-| 01 | `01-myglico-semantic-overview.pptx` | Apresentação inicial do recorte semântico. |
-| 02 | `02-myglico-semantic-pipeline.pptx` | Apresentação do pipeline técnico, R2RML e GraphDB. |
-| 03 | `03-myglico-end-to-end-tracking-colab.ipynb` | Apresentação final em formato Colab/notebook com a validação end-to-end. |
+| 01 | `01-myglico-semantic-overview.pptx` | Initial presentation of the semantic slice. |
+| 02 | `02-myglico-semantic-pipeline.pptx` | Presentation of the technical pipeline, R2RML, and GraphDB. |
+| 03 | `03-myglico-end-to-end-tracking-colab.ipynb` | Final Colab/notebook presentation with the end-to-end validation. |
 
-O notebook final responde a pergunta:
+The final notebook answers the question:
 
-> Uma medição consultada via SPARQL consegue comprovar, de ponta a ponta, que valor, horário, classe clínica e ponteiro para a linha exata do arquivo bruto UCI batem com o registro relacional no MySQL?
+> Can a measurement queried via SPARQL prove, end to end, that value, timestamp, clinical class, and the pointer to the exact line of the raw UCI file match the relational record in MySQL?
 
-Ele compara:
+It compares:
 
-- contagem de pacientes e medições no MySQL;
-- contagem de pacientes e medições no GraphDB;
-- medições do `Paciente UCI 01` em `1991-04-29`;
-- UUIDs de `GlucoseMeasurement` e `RawRecord`;
-- linha exata do arquivo UCI via `sourceRecordId`, como `data-01:50`.
+- patient and measurement counts in MySQL;
+- patient and measurement counts in GraphDB;
+- measurements of `Paciente UCI 01` on `1991-04-29`;
+- UUIDs of `GlucoseMeasurement` and `RawRecord`;
+- the exact UCI file line via `sourceRecordId`, such as `data-01:50`.
 
-## Relatório final
+## Final report
 
-O relatório final em PDF será colocado em:
+The final PDF report will be placed in:
 
 ```text
 artifacts/reports/
 ```
 
-como:
+as:
 
 ```text
 MyGlico_WebSemantica_RelatorioFinal.pdf
 ```
 
-## Citação
+## Citation
 
-Se você usar este repositório, cite-o usando o arquivo [`CITATION.cff`](CITATION.cff) — o GitHub renderiza um botão **"Cite this repository"** a partir dele — ou pelo registro arquivado no Zenodo: **10.5281/zenodo.21148858** (concept DOI, sempre resolve para o release mais recente; a versão v0.1.0 é `10.5281/zenodo.21148859`). Veja o [registro no Zenodo](https://doi.org/10.5281/zenodo.21148858).
+If you use this repository, cite it using the [`CITATION.cff`](CITATION.cff) file — GitHub renders a **"Cite this repository"** button from it — or via the archived Zenodo record: **10.5281/zenodo.21148858** (concept DOI, always resolving to the latest release; version v0.1.0 is `10.5281/zenodo.21148859`). See the [Zenodo record](https://doi.org/10.5281/zenodo.21148858).
 
-## Licença
+## License
 
-Apache License 2.0 — veja [`LICENSE`](LICENSE). O dataset UCI Diabetes usado como base possui seus próprios termos de uso; confirme a citação e a licença oficiais em `archive.ics.uci.edu`.
+Apache License 2.0 — see [`LICENSE`](LICENSE). The UCI Diabetes dataset used as a base has its own terms of use; confirm the official citation and license at `archive.ics.uci.edu`.
