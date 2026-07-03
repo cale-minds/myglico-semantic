@@ -1,6 +1,6 @@
 ﻿# MyGlico Semantic
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21148858.svg)](https://doi.org/10.5281/zenodo.21148858)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21148858.svg?v=2)](https://doi.org/10.5281/zenodo.21148858)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 **Português** | [English](README.md)
