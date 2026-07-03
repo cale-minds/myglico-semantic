@@ -13,7 +13,7 @@ abstract: >-
 authors:
   - family-names: "Calé"
     given-names: Felipe
-    email: felipe.cale@ufrj.br
+    email: cale@ufrj.br
     affiliation: "Universidade Federal do Rio de Janeiro (UFRJ) — Programa de Pós-Graduação em Informática (PPGI)"
     # orcid: "https://orcid.org/0000-0000-0000-0000"  # opcional
 version: 0.1.0
