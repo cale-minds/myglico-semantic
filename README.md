@@ -1,5 +1,13 @@
 ﻿# MyGlico Semantic
 
+[![DOI](https://img.shields.io/badge/DOI-pendente%20(Zenodo)-lightgrey.svg)](#citação)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+
+<!--
+  Após criar o release no GitHub e o Zenodo cunhar o DOI, troque o badge acima por:
+  [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXXX)
+-->
+
 Repositório de conclusão da disciplina de **Web Semântica**, com o recorte semântico do projeto MyGlico.
 
 O objetivo deste repositório é demonstrar:
@@ -163,3 +171,11 @@ como:
 ```text
 MyGlico_WebSemantica_RelatorioFinal.pdf
 ```
+
+## Citação
+
+Se você usar este repositório, cite-o usando o arquivo [`CITATION.cff`](CITATION.cff) — o GitHub renderiza um botão **"Cite this repository"** a partir dele. Após arquivar um release no Zenodo, adicione o DOI ao badge no topo e descomente o bloco `identifiers:` no `CITATION.cff`.
+
+## Licença
+
+Apache License 2.0 — veja [`LICENSE`](LICENSE). O dataset UCI Diabetes usado como base possui seus próprios termos de uso; confirme a citação e a licença oficiais em `archive.ics.uci.edu`.
