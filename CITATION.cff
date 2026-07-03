@@ -22,16 +22,13 @@ url: "https://github.com/cale-minds/myglico-semantic"
 repository-code: "https://github.com/cale-minds/myglico-semantic"
 license: Apache-2.0
 
-# TODO (DOI): apos arquivar um release no Zenodo, descomente e preencha os dois
-# identificadores abaixo. O primeiro e o DOI da versao especifica (v0.1.0); o
-# segundo e o "concept DOI", que sempre resolve para o release mais recente.
-# identifiers:
-#   - type: doi
-#     value: "10.5281/zenodo.XXXXXXXX"
-#     description: "Archived snapshot of this specific software version (v0.1.0) on Zenodo."
-#   - type: doi
-#     value: "10.5281/zenodo.YYYYYYYY"
-#     description: "Concept DOI representing all versions; always resolves to the latest archived release."
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.21148859"
+    description: "Archived snapshot of this specific software version (v0.1.0) on Zenodo."
+  - type: doi
+    value: "10.5281/zenodo.21148858"
+    description: "Concept DOI representing all versions; always resolves to the latest archived release."
 
 keywords:
   - semantic web
