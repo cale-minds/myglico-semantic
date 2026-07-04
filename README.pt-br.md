@@ -34,8 +34,7 @@ O objetivo deste repositório é demonstrar:
 |-- mappings/
 |   `-- myglico-core-r2rml-juma.ttl
 |-- ontology/
-|   |-- mygv-dpo-extension.owl.ttl
-|   `-- mygv-dpo-extension.examples.ttl
+|   `-- mygv-dpo-extension.owl.ttl
 `-- scripts/
     `-- import_uci_dataset.py
 ```
