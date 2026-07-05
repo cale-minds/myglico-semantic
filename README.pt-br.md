@@ -32,11 +32,11 @@ O objetivo deste repositório é demonstrar:
 |-- data/
 |   `-- raw/                     # Artefatos brutos incluídos para facilitar a avaliação
 |-- mappings/
-|   `-- myglico-core-r2rml-juma.ttl
+|   `-- myglico-core-r2rml-juma.ttl # Mapeamento R2RML de MySQL para RDF
 |-- ontology/
-|   `-- mygv-dpo-extension.owl.ttl
+|   `-- mygv-dpo-extension.owl.ttl  # Ontologia OWL do vocabulário mygv:
 `-- scripts/
-    `-- import_uci_dataset.py
+    `-- import_uci_dataset.py       # CLI para importar o dataset UCI Diabetes
 ```
 
 ## Requisitos
