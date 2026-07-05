@@ -156,17 +156,7 @@ Ele compara:
 
 ## Relatório final
 
-O relatório final em PDF será colocado em:
-
-```text
-artifacts/reports/
-```
-
-como:
-
-```text
-MyGlico_WebSemantica_RelatorioFinal.pdf
-```
+Baixe o relatório final em PDF: [MyGlico_WebSemantica_RelatorioFinal.pdf](artifacts/reports/MyGlico_WebSemantica_RelatorioFinal.pdf)
 
 ## Citação
 
